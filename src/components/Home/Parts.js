@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Parts = () => {
     return (
@@ -17,7 +18,7 @@ const Parts = () => {
                             <p className='text-left font-bold'>Available:</p>
                         </div>
                         <p className="text-left font-bold w-full ">Price:</p>
-                        <button className="btn w-full btn-primary text-left">Order</button>
+                        <Link to={"/purchase"} className="btn w-full btn-primary text-left">Order</Link>
                     </div>
                 </div>
                 <div className="card  bg-base-100 shadow-xl">
