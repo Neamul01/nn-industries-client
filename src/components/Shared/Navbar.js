@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     return (
-        <div className="navbar bg-gray-100 sticky top-0 z-50 px-4 md:px-8 lg:px-12">
+        <div className="navbar justify-between bg-gray-100 sticky top-0 z-50 px-4 md:px-8 lg:px-12">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex="0" className="btn btn-ghost lg:hidden">
@@ -18,15 +18,12 @@ const Navbar = () => {
                 <Link to={'/'} className="btn btn-ghost normal-case text-xl">N&N Industries</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
-
-            </div>
-            <div className="navbar-end">
                 <ul className="menu menu-horizontal p-0">
                     <li><Link to={'/dashboard'}>Dashboard</Link></li>
                     <li><Link to={'/login'}>Login</Link></li>
                     <li><Link to={'/signup'}>Sign Up</Link></li>
+                    <Link to={'/login'} className="btn btn-ghost">Get started</Link>
                 </ul>
-                <Link to={'/login'} className="btn btn-ghost">Get started</Link>
             </div>
         </div>
     );

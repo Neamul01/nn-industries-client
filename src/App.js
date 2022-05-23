@@ -8,8 +8,12 @@ import Login from './components/Login/Login';
 import Signup from './components/Login/Signup';
 import Dashboard from './components/Dashboard/Dashboard';
 import MyOrder from './components/Dashboard/MyOrder';
-import MyReview from './components/Dashboard/MyReview';
+import AddReview from './components/Dashboard/AddReview';
 import MyProfile from './components/Dashboard/MyProfile';
+import AllOrders from './components/Dashboard/Admin/AllOrders';
+import AddProduct from './components/Dashboard/Admin/AddProduct';
+import MakeAdmin from './components/Dashboard/Admin/MakeAdmin';
+import ManageProducts from './components/Dashboard/Admin/ManageProducts';
 
 function App() {
   return (
@@ -18,11 +22,16 @@ function App() {
       <div className="px-4 md:px-8 lg:px-12 bg-gray-100">
         <Routes>
           <Route path='/' element={<Home />}></Route>
-          <Route path='/home' element={<Home />}></Route>
+          <Route path='home' element={<Home />}></Route>
           <Route path='dashboard' element={<Dashboard />}>
-            <Route path='/myorder' element={<MyOrder />}></Route>
-            <Route path='/myreview' element={<MyReview />}></Route>
-            <Route path='/myprofile' element={<MyProfile />}></Route>
+            <Route path='myorder' element={<MyOrder />}></Route>
+            <Route path='myreview' element={<AddReview />}></Route>
+            <Route path='myprofile' element={<MyProfile />}></Route>
+
+            <Route path='allorders' element={<AllOrders />}></Route>
+            <Route path='addproduct' element={<AddProduct />}></Route>
+            <Route path='manageproduct' element={<ManageProducts />}></Route>
+            <Route path='makeadmin' element={<MakeAdmin />}></Route>
           </Route>
           <Route path='login' element={<Login />}></Route>
           <Route path='signup' element={<Signup />}></Route>
