@@ -1,6 +1,9 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth'
+import auth from '../../firebase.init';
 
 const Purchase = () => {
+    const [user] = useAuthState(auth);
     return (
 
         <section className=" dark:bg-gray-900 lg:py-12 lg:flex lg:justify-around">
@@ -22,6 +25,8 @@ const Purchase = () => {
                             <div >
                                 <label htmlFor="username" className="block text-sm text-gray-800 dark:text-gray-200 text-left">Name</label>
                                 <input type="text"
+                                    value={user?.displayName || ''}
+                                    disabled
                                     className="block w-full px-4 py-2  text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
                             </div>
 
@@ -31,6 +36,8 @@ const Purchase = () => {
                                 </div>
 
                                 <input type="email"
+                                    value={user?.email}
+                                    disabled
                                     className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
                             </div>
                             <div>

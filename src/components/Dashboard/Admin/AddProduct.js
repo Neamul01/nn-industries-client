@@ -1,18 +1,31 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-import axios from 'axios';
+import { request } from '../../utils/axios-utils';
+import { toast } from 'react-toastify'
 
 const AddProduct = () => {
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
-    const imageStorageKey = '15f21049cca03fc578d2f5da6af00a19';
+    // const imageStorageKey = '15f21049cca03fc578d2f5da6af00a19';
 
     const onSubmit = async (data) => {
+        request({ url: '/products', method: "post", data: data })
+            .then(res => {
+                toast.success('Product uploaded successfully...')
+                reset()
+            })
+            .catch(error => {
+                toast.error(error.message)
+            })
+
         // console.log(data.image[0]);
         // const image = data.image[0];
         // const formData = new FormData();
         // formData.append('image', image);
         // const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
+        // request({ url: url, method: 'post', data: formData })
+        //     .then(res => console.log(res))
+        //     .catch(err => console.log(err))
         // await axios.post(url, {
         //     body: formData
         // })
