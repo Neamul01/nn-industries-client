@@ -4,6 +4,7 @@ import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
 import SocialLogin from './SocialLogin';
+import LoadingSpinner from '../Shared/LoadingSpinner';
 
 const Signup = () => {
     const [
@@ -34,7 +35,7 @@ const Signup = () => {
     }, [user, navigate])
 
     if (loading) {
-        console.log('loading...')
+        return <LoadingSpinner></LoadingSpinner>
     }
 
     return (

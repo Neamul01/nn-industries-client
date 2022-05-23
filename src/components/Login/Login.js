@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
 import SocialLogin from './SocialLogin';
+import LoadingSpinner from '../Shared/LoadingSpinner';
 
 const Login = () => {
     const [
@@ -17,16 +18,18 @@ const Login = () => {
     const navigate = useNavigate();
 
     const onSubmit = async data => {
-        console.log(data)
         await signInWithEmailAndPassword(data.email, data.password)
     };
 
-    if (user) {
-        navigate('/')
-    }
+    useEffect(() => {
+        if (user) {
+            navigate('/')
+        }
+    }, [user, navigate])
 
     if (loading) {
         console.log('loading...')
+        return <LoadingSpinner></LoadingSpinner>
     }
 
     return (
