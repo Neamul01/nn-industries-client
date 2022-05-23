@@ -1,9 +1,14 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth'
+import { useQuery } from 'react-query';
 import auth from '../../firebase.init';
+import { request } from '../utils/axios-utils';
 
 const Purchase = () => {
     const [user] = useAuthState(auth);
+    const { data: products, isLoading } = useQuery('products', () => request({ url: '/products', method: 'get' }).then(res => console.log(res)))
+    console.log('product', products)
+
     return (
 
         <section className=" dark:bg-gray-900 lg:py-12 lg:flex lg:justify-around">
