@@ -20,26 +20,26 @@ const Purchase = () => {
                         <p className="text-left font-bold w-full ">Price:</p>
                         <div className='w-full my-4'>
                             <div >
-                                <label for="username" className="block text-sm text-gray-800 dark:text-gray-200 text-left">Name</label>
+                                <label htmlFor="username" className="block text-sm text-gray-800 dark:text-gray-200 text-left">Name</label>
                                 <input type="text"
                                     className="block w-full px-4 py-2  text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
                             </div>
 
                             <div className="mt-2">
                                 <div className="flex items-center justify-between">
-                                    <label for="password" className="block text-sm text-gray-800 dark:text-gray-200">Email</label>
+                                    <label htmlFor="password" className="block text-sm text-gray-800 dark:text-gray-200">Email</label>
                                 </div>
 
                                 <input type="email"
                                     className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
                             </div>
                             <div>
-                                <label for="username" className="block mt-2 text-sm text-gray-800 dark:text-gray-200 text-left">Address</label>
+                                <label htmlFor="username" className="block mt-2 text-sm text-gray-800 dark:text-gray-200 text-left">Address</label>
                                 <input type="text"
                                     className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
                             </div>
                             <div className='w-full'>
-                                <label for="username" className="block text-sm text-gray-800 dark:text-gray-200 text-left">Quantity</label>
+                                <label htmlFor="username" className="block text-sm text-gray-800 dark:text-gray-200 text-left">Quantity</label>
                                 <input type="number"
                                     className="block w-1/2 px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
                                 <p className="text-xs text-gray-600 dark:text-gray-400 text-left">"Quantity should be higher then minimum quantity and less then total quantity."</p>

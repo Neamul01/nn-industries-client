@@ -4,8 +4,8 @@ const MakeAdmin = () => {
     return (
         <div className='w-full'>
             <h2 className="text-2xl text-center text-secondary font-bold mb-4">Make Admin</h2>
-            <div class="overflow-x-auto w-full p-2 md:p-6">
-                <table class="table w-full">
+            <div className="overflow-x-auto w-full p-2 md:p-6">
+                <table className="table w-full">
                     {/* <!-- head --> */}
                     <thead>
                         <tr>
@@ -24,25 +24,25 @@ const MakeAdmin = () => {
                                 1
                             </th>
                             <td>
-                                <div class="flex items-center space-x-3">
-                                    <div class="avatar">
-                                        <div class="mask mask-squircle w-12 h-12">
+                                <div className="flex items-center space-x-3">
+                                    <div className="avatar">
+                                        <div className="mask mask-squircle w-12 h-12">
                                             <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="font-bold">Hart Hagerty</div>
-                                        <div class="text-sm opacity-50">United States</div>
+                                        <div className="font-bold">Hart Hagerty</div>
+                                        <div className="text-sm opacity-50">United States</div>
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 Zemlak, Daniel and Leannon
                                 <br />
-                                <span class="badge badge-ghost badge-sm">Desktop Support Technician</span>
+                                <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
                             </td>
                             <th>
-                                <button class="btn btn-accent btn-sm">Make Admin</button>
+                                <button className="btn btn-accent btn-sm">Make Admin</button>
                             </th>
                         </tr>
                         {/* <!-- row 2 --> */}
@@ -51,25 +51,25 @@ const MakeAdmin = () => {
                                 1
                             </th>
                             <td>
-                                <div class="flex items-center space-x-3">
-                                    <div class="avatar">
-                                        <div class="mask mask-squircle w-12 h-12">
+                                <div className="flex items-center space-x-3">
+                                    <div className="avatar">
+                                        <div className="mask mask-squircle w-12 h-12">
                                             <img src="/tailwind-css-component-profile-3@56w.png" alt="Avatar Tailwind CSS Component" />
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="font-bold">Brice Swyre</div>
-                                        <div class="text-sm opacity-50">China</div>
+                                        <div className="font-bold">Brice Swyre</div>
+                                        <div className="text-sm opacity-50">China</div>
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 Carroll Group
                                 <br />
-                                <span class="badge badge-ghost badge-sm">Tax Accountant</span>
+                                <span className="badge badge-ghost badge-sm">Tax Accountant</span>
                             </td>
                             <th>
-                                <button class="btn btn-accent btn-sm">Make Admin</button>
+                                <button className="btn btn-accent btn-sm">Make Admin</button>
                             </th>
                         </tr>
                         {/* <!-- row 3 --> */}
@@ -78,25 +78,25 @@ const MakeAdmin = () => {
                                 1
                             </th>
                             <td>
-                                <div class="flex items-center space-x-3">
-                                    <div class="avatar">
-                                        <div class="mask mask-squircle w-12 h-12">
+                                <div className="flex items-center space-x-3">
+                                    <div className="avatar">
+                                        <div className="mask mask-squircle w-12 h-12">
                                             <img src="/tailwind-css-component-profile-4@56w.png" alt="Avatar Tailwind CSS Component" />
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="font-bold">Marjy Ferencz</div>
-                                        <div class="text-sm opacity-50">Russia</div>
+                                        <div className="font-bold">Marjy Ferencz</div>
+                                        <div className="text-sm opacity-50">Russia</div>
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 Rowe-Schoen
                                 <br />
-                                <span class="badge badge-ghost badge-sm">Office Assistant I</span>
+                                <span className="badge badge-ghost badge-sm">Office Assistant I</span>
                             </td>
                             <th>
-                                <button class="btn btn-accent btn-sm">Make Admin</button>
+                                <button className="btn btn-accent btn-sm">Make Admin</button>
                             </th>
                         </tr>
                         {/* <!-- row 4 --> */}
@@ -105,25 +105,25 @@ const MakeAdmin = () => {
                                 1
                             </th>
                             <td>
-                                <div class="flex items-center space-x-3">
-                                    <div class="avatar">
-                                        <div class="mask mask-squircle w-12 h-12">
+                                <div className="flex items-center space-x-3">
+                                    <div className="avatar">
+                                        <div className="mask mask-squircle w-12 h-12">
                                             <img src="/tailwind-css-component-profile-5@56w.png" alt="Avatar Tailwind CSS Component" />
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="font-bold">Yancy Tear</div>
-                                        <div class="text-sm opacity-50">Brazil</div>
+                                        <div className="font-bold">Yancy Tear</div>
+                                        <div className="text-sm opacity-50">Brazil</div>
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 Wyman-Ledner
                                 <br />
-                                <span class="badge badge-ghost badge-sm">Community Outreach Specialist</span>
+                                <span className="badge badge-ghost badge-sm">Community Outreach Specialist</span>
                             </td>
                             <th>
-                                <button class="btn btn-accent btn-sm">Make Admin</button>
+                                <button className="btn btn-accent btn-sm">Make Admin</button>
                             </th>
                         </tr>
                     </tbody>

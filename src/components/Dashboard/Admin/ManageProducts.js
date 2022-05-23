@@ -5,8 +5,8 @@ const ManageProducts = () => {
         <div className='w-full'>
             <h2 className="text-2xl text-center text-secondary font-bold mb-4">Manage All Products</h2>
 
-            <div class="overflow-x-auto p-2 md:p-6">
-                <table class="table table-zebra w-full">
+            <div className="overflow-x-auto p-2 md:p-6">
+                <table className="table table-zebra w-full">
                     {/* <!-- head --> */}
                     <thead>
                         <tr>
