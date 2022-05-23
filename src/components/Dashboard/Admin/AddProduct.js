@@ -1,11 +1,27 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
+import axios from 'axios';
 
 const AddProduct = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
-    const onSubmit = data => {
-        console.log(data)
+    const imageStorageKey = '15f21049cca03fc578d2f5da6af00a19';
+
+    const onSubmit = async (data) => {
+        // console.log(data.image[0]);
+        // const image = data.image[0];
+        // const formData = new FormData();
+        // formData.append('image', image);
+        // const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
+        // await axios.post(url, {
+        //     body: formData
+        // })
+        //     .then(data => {
+        //         console.log(data)
+        //     })
+        //     .catch(error => {
+        //         console.log(error)
+        //     })
     };
 
     return (
@@ -73,9 +89,9 @@ const AddProduct = () => {
                                     <label htmlFor="rating" className="block text-sm text-gray-800 dark:text-gray-200">Image</label>
                                 </div>
 
-                                <input type="file"
+                                <input type="text"
                                     {...register("image", { required: true })}
-                                    placeholder='Your ratings...'
+                                    placeholder='Product Image...'
                                     className="block w-full px-4 py-2 mt-2 text-gray-700  rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
                                 {errors.image?.type === 'required' && <span><small className='text-red-500'>Image is required</small></span>}
                             </div>
