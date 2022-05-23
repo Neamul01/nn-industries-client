@@ -24,7 +24,7 @@ function App() {
           <Route path='/' element={<Home />}></Route>
           <Route path='home' element={<Home />}></Route>
           <Route path='dashboard' element={<Dashboard />}>
-            <Route path='myorder' element={<MyOrder />}></Route>
+            <Route index element={<MyOrder />}></Route>
             <Route path='myreview' element={<AddReview />}></Route>
             <Route path='myprofile' element={<MyProfile />}></Route>
 
