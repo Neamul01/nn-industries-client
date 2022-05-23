@@ -11,9 +11,10 @@ const ManageProducts = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Name</th>
-                            <th>Job</th>
-                            <th>Favorite Color</th>
+                            <th>Products</th>
+                            <th>Available</th>
+                            <th>Sold</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -23,6 +24,9 @@ const ManageProducts = () => {
                             <td>Cy Ganderton</td>
                             <td>Quality Control Specialist</td>
                             <td>Blue</td>
+                            <td>
+                                <button className="btn btn-xs btn-accent">Cancel</button>
+                            </td>
                         </tr>
                         {/* <!-- row 2 --> */}
                         <tr>
@@ -30,6 +34,9 @@ const ManageProducts = () => {
                             <td>Hart Hagerty</td>
                             <td>Desktop Support Technician</td>
                             <td>Purple</td>
+                            <td>
+                                <button className="btn btn-xs btn-accent">Cancel</button>
+                            </td>
                         </tr>
                         {/* <!-- row 3 --> */}
                         <tr>
@@ -37,6 +44,9 @@ const ManageProducts = () => {
                             <td>Brice Swyre</td>
                             <td>Tax Accountant</td>
                             <td>Red</td>
+                            <td>
+                                <button className="btn btn-xs btn-accent">Cancel</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
