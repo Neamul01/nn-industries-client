@@ -1,7 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { signOut } from 'firebase/auth';
 
 const Navbar = () => {
+    const [user] = useAuthState(auth);
+
+    const handleSignOut = () => {
+        signOut(auth);
+    }
     return (
         <div className="navbar justify-between bg-gray-100 sticky top-0 z-50 px-4 md:px-8 lg:px-12">
             <div className="navbar-start">
@@ -21,9 +29,12 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal p-0">
                     <li><Link to={'/dashboard'}>Dashboard</Link></li>
                     <li><Link to={'/portfolio'}>Portfolio</Link></li>
-                    <li><Link to={'/login'}>Login</Link></li>
-                    <li><Link to={'/signup'}>Sign Up</Link></li>
-                    <Link to={'/login'} className="btn btn-ghost">Get started</Link>
+                    {
+                        user ?
+                            <button onClick={handleSignOut} className="btn btn-ghost">Sign Out</button>
+                            :
+                            <Link to={'/login'} className="btn btn-ghost">Sign Up</Link>
+                    }
                 </ul>
             </div>
         </div>
