@@ -20,6 +20,7 @@ const Navbar = () => {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
                     <li><Link to={'/dashboard'}>Dashboard</Link></li>
+                    <li><Link to={'/portfolio'}>Portfolio</Link></li>
                     <li><Link to={'/login'}>Login</Link></li>
                     <li><Link to={'/signup'}>Sign Up</Link></li>
                     <Link to={'/login'} className="btn btn-ghost">Get started</Link>
