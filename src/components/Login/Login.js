@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { toast } from 'react-toastify';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
@@ -30,8 +31,10 @@ const Login = () => {
     }, [user, navigate, from])
 
     if (loading) {
-        console.log('loading...')
         return <LoadingSpinner></LoadingSpinner>
+    }
+    if (error) {
+        toast.error(error.message)
     }
 
     return (
