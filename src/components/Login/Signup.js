@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
@@ -17,6 +17,8 @@ const Signup = () => {
     const [customError, setCustomError] = useState('');
 
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.from?.pathname || '/';
 
     const onSubmit = data => {
         console.log(data)
@@ -30,7 +32,7 @@ const Signup = () => {
 
     useEffect(() => {
         if (user) {
-            navigate('/')
+            navigate(from, { replace: true })
         }
     }, [user, navigate])
 

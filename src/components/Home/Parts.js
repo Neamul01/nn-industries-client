@@ -18,7 +18,7 @@ const Parts = () => {
                             <p className='text-left font-bold'>Available:</p>
                         </div>
                         <p className="text-left font-bold w-full ">Price:</p>
-                        <Link to={"/purchase"} className="btn w-full btn-primary text-left">Order</Link>
+                        <Link to={"/purchase"} className="btn w-full btn-primary text-left">Purchase</Link>
                     </div>
                 </div>
                 <div className="card  bg-base-100 shadow-xl">
@@ -33,7 +33,7 @@ const Parts = () => {
                             <p className='text-left font-bold'>Available:</p>
                         </div>
                         <p className="text-left font-bold w-full ">Price:</p>
-                        <button className="btn w-full btn-primary text-left">Order</button>
+                        <button className="btn w-full btn-primary text-left">Purchase</button>
                     </div>
                 </div>
                 <div className="card  bg-base-100 shadow-xl">
@@ -48,7 +48,7 @@ const Parts = () => {
                             <p className='text-left font-bold'>Available:</p>
                         </div>
                         <p className="text-left font-bold w-full ">Price:</p>
-                        <button className="btn w-full btn-primary text-left">Order</button>
+                        <button className="btn w-full btn-primary text-left">Purchase</button>
                     </div>
                 </div>
             </div>
