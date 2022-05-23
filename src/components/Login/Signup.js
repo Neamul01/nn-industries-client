@@ -21,7 +21,9 @@ const Signup = () => {
         if (data.password !== data.confirmPassword) {
             setCustomError('Password and Confirm password must be same.')
         }
-        createUserWithEmailAndPassword(data.email, data.password)
+        else {
+            createUserWithEmailAndPassword(data.email, data.password)
+        }
     };
 
     useEffect(() => {
@@ -48,8 +50,8 @@ const Signup = () => {
                         {errors.name?.type === 'required' && <span><small className='text-red-500 text-left'>"Name is required"</small></span>}
                     </div>
 
-                    <div>
-                        <label htmlFor="username" className="block text-sm text-gray-800 dark:text-gray-200">Name</label>
+                    <div className='mt-4'>
+                        <label htmlFor="email" className="block text-sm text-gray-800 dark:text-gray-200">Email</label>
                         <input type="email"
                             {...register("email", { required: true })}
                             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
