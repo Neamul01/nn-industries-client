@@ -1,7 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const Signup = () => {
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth);
+
     return (
         <div className='py-6 md:py-12'>
             <div className="w-full max-w-lg p-14 m-auto bg-white rounded-lg shadow-xl dark:bg-gray-800">
