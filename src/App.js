@@ -7,6 +7,9 @@ import Purchase from './components/Home/Purchase';
 import Login from './components/Login/Login';
 import Signup from './components/Login/Signup';
 import Dashboard from './components/Dashboard/Dashboard';
+import MyOrder from './components/Dashboard/MyOrder';
+import MyReview from './components/Dashboard/MyReview';
+import MyProfile from './components/Dashboard/MyProfile';
 
 function App() {
   return (
@@ -14,12 +17,16 @@ function App() {
       <Navbar></Navbar>
       <div className="px-4 md:px-8 lg:px-12 bg-gray-100">
         <Routes>
-          <Route path='/' element={<Home></Home>}></Route>
-          <Route path='/home' element={<Home></Home>}></Route>
-          <Route path='dashboard' element={<Dashboard></Dashboard>}></Route>
-          <Route path='login' element={<Login></Login>}></Route>
-          <Route path='signup' element={<Signup></Signup>}></Route>
-          <Route path='purchase' element={<Purchase></Purchase>}></Route>
+          <Route path='/' element={<Home />}></Route>
+          <Route path='/home' element={<Home />}></Route>
+          <Route path='dashboard' element={<Dashboard />}>
+            <Route path='/myorder' element={<MyOrder />}></Route>
+            <Route path='/myreview' element={<MyReview />}></Route>
+            <Route path='/myprofile' element={<MyProfile />}></Route>
+          </Route>
+          <Route path='login' element={<Login />}></Route>
+          <Route path='signup' element={<Signup />}></Route>
+          <Route path='purchase' element={<Purchase />}></Route>
         </Routes>
       </div>
       <Footer></Footer>
