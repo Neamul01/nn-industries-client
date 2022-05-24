@@ -6,14 +6,20 @@ import PartsItems from '../Home/PartsItems'
 
 const Parts = () => {
     const { data: products, isLoading, error } = useQuery('products', async () => await request({ url: '/products', method: 'get' }));
-    const displayProducts = products?.slice(products.length - 6, products.length);
-
+    
     if (isLoading) {
         return <LoadingSpinner></LoadingSpinner>
     }
     if (error) {
         console.log(error)
     }
+
+    console.log(products)
+    let displayProducts;
+    if(products.length){
+        displayProducts = products?.slice(products.length - 6, products.length);
+    }
+
     return (
         <div className='my-6 md:my-12 lg:my-24'>
             <h2 className="text-3xl text-center text-primary mb-3 md:mb-8 font-bold">Products</h2>
