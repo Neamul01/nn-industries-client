@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
@@ -6,16 +6,18 @@ import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import LoadingSpinner from '../Shared/LoadingSpinner';
 import { request } from '../utils/axios-utils';
+import { useForm } from "react-hook-form";
 
 
 const Purchase = () => {
     const [user] = useAuthState(auth);
     const { id } = useParams();
-    const [btnDisable, setBtnDisable] = useState(false)
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const [btnDisable, setBtnDisable] = useState(false);
+    const [customError, setCustomError] = useState('')
 
     const { data: singleProduct, isLoading, error } = useQuery('singleProduct', async () => await request({ url: `/products/${id}`, method: 'get' }))
 
-    // console.log(Number(quantity))
     if (isLoading) {
         return <LoadingSpinner></LoadingSpinner>
     }
@@ -26,16 +28,20 @@ const Purchase = () => {
 
     const handleQuantity = inputQuantity => {
         // console.log(inputQuantity)
-        // if (inputQuantity < minimumQuantity || inputQuantity > availableQuantity) {
-        //     console.log('big')
-        //     setBtnDisable(true)
-        // }
-        if (inputQuantity > minimumQuantity || inputQuantity < availableQuantity) {
-            setBtnDisable(false)
-            console.log('min')
+        if (Number(inputQuantity) < Number(minimumQuantity) || Number(inputQuantity) > Number(availableQuantity)) {
+            setCustomError('Invalid Quantity..')
+            setBtnDisable(true)
         }
-        console.log('low')
+        else {
+            setBtnDisable(false);
+            setCustomError('')
+        }
     }
+
+    const onSubmit = data => {
+        console.log(data)
+        console.log("submit")
+    };
 
     return (
         <section className=" dark:bg-gray-900 lg:py-12 lg:flex lg:justify-around">
@@ -53,10 +59,11 @@ const Purchase = () => {
                             <p className='text-left font-bold'>Available: {availableQuantity} </p>
                         </div>
                         <p className="text-left font-bold w-full ">Price:{price} </p>
-                        <div className='w-full my-4'>
+                        <form onSubmit={handleSubmit(onSubmit)} className='w-full my-4'>
                             <div >
                                 <label htmlFor="username" className="block text-sm text-gray-800 dark:text-gray-200 text-left">Name</label>
                                 <input type="text"
+                                    {...register("name", { required: true })}
                                     value={user?.displayName || ''}
                                     disabled
                                     className="block w-full px-4 py-2  text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
@@ -68,6 +75,7 @@ const Purchase = () => {
                                 </div>
 
                                 <input type="email"
+                                    {...register("email", { required: true })}
                                     value={user?.email || ''}
                                     disabled
                                     className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
@@ -75,19 +83,33 @@ const Purchase = () => {
                             <div>
                                 <label htmlFor="username" className="block mt-2 text-sm text-gray-800 dark:text-gray-200 text-left">Address</label>
                                 <input type="text"
+                                    {...register("address", { required: true })}
                                     className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                {errors.address?.type === 'required' && <p className="text-red-500 text-left"><small>"Address is required"</small></p>}
                             </div>
                             <div className='w-full'>
                                 <label htmlFor="username" className="block text-sm text-gray-800 dark:text-gray-200 text-left">Quantity</label>
                                 <input type="number"
+                                    {...register("quantity", {
+                                        required: true,
+                                        min: minimumQuantity,
+                                        max: availableQuantity
+                                    })}
                                     onBlur={e => handleQuantity(e.target.value)}
                                     className="block w-1/2 px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
-                                <p className="text-xs text-gray-600 dark:text-gray-400 text-left">"Quantity should be higher then minimum quantity and less then total quantity."</p>
+                                {errors.quantity?.type === 'required' && <p className="text-red-500 text-left"><small>"Quantity is required"</small></p>}
+                                {errors.quantity?.type === 'min' && <p className="text-red-500 text-left"><small>"Quantity should more then minimum Quantity"</small></p>}
+                                {errors.quantity?.type === 'max' && <p className="text-red-500 text-left"><small>"Quantity should lower then Available Quaantity"</small></p>}
+                                {customError && <p className="text-red-500 text-left"><small>{customError}</small></p>}
+
                             </div>
-                        </div>
-                        <button
-                            disabled={btnDisable}
-                            className="btn w-full btn-primary text-left">Place Order</button>
+                            <input
+                                type='submit'
+                                disabled={btnDisable}
+                                value='Place Order'
+                                className="btn w-full btn-primary text-left"
+                            />
+                        </form>
                     </div>
                 </div>
             </div>
