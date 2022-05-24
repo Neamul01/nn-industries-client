@@ -1,13 +1,12 @@
 import React from 'react';
-import useProducts from '../../hooks/useProducts';
 import LoadingSpinner from '../Shared/LoadingSpinner';
-import PartsItems from './PartsItems';
+import { useQuery } from "react-query";
+import { request } from "../utils/axios-utils";
+import PartsItems from '../Home/PartsItems'
 
 const Parts = () => {
-    const { products, isLoading, error } = useProducts();
-
+    const { data: products, isLoading, error } = useQuery('products', async () => await request({ url: '/products', method: 'get' }));
     const displayProducts = products?.slice(products.length - 6, products.length);
-    // console.log(displayProducts)
 
     if (isLoading) {
         return <LoadingSpinner></LoadingSpinner>

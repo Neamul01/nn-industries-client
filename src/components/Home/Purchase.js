@@ -18,6 +18,14 @@ const Purchase = () => {
 
     const { data: singleProduct, isLoading, error } = useQuery('singleProduct', async () => await request({ url: `/products/${id}`, method: 'get' }))
 
+
+    const formSubmit = data => {
+        console.log(data)
+        console.log("submit")
+    };
+
+
+
     if (isLoading) {
         return <LoadingSpinner></LoadingSpinner>
     }
@@ -38,11 +46,6 @@ const Purchase = () => {
         }
     }
 
-    const onSubmit = data => {
-        console.log(data)
-        console.log("submit")
-    };
-
     return (
         <section className=" dark:bg-gray-900 lg:py-12 lg:flex lg:justify-around">
             <div className="dark:bg-gray-800 lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg lg:rounded-lg w-full justify-around">
@@ -59,14 +62,15 @@ const Purchase = () => {
                             <p className='text-left font-bold'>Available: {availableQuantity} </p>
                         </div>
                         <p className="text-left font-bold w-full ">Price:{price} </p>
-                        <form onSubmit={handleSubmit(onSubmit)} className='w-full my-4'>
+                        <form onSubmit={handleSubmit(formSubmit)} className='w-full my-4'>
                             <div >
                                 <label htmlFor="username" className="block text-sm text-gray-800 dark:text-gray-200 text-left">Name</label>
                                 <input type="text"
                                     {...register("name", { required: true })}
                                     value={user?.displayName || ''}
                                     disabled
-                                    className="block w-full px-4 py-2  text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    className="block w-full px-4 py-2  text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                />
                             </div>
 
                             <div className="mt-2">
@@ -78,13 +82,15 @@ const Purchase = () => {
                                     {...register("email", { required: true })}
                                     value={user?.email || ''}
                                     disabled
-                                    className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                />
                             </div>
                             <div>
                                 <label htmlFor="username" className="block mt-2 text-sm text-gray-800 dark:text-gray-200 text-left">Address</label>
                                 <input type="text"
                                     {...register("address", { required: true })}
-                                    className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                />
                                 {errors.address?.type === 'required' && <p className="text-red-500 text-left"><small>"Address is required"</small></p>}
                             </div>
                             <div className='w-full'>
@@ -96,7 +102,8 @@ const Purchase = () => {
                                         max: availableQuantity
                                     })}
                                     onBlur={e => handleQuantity(e.target.value)}
-                                    className="block w-1/2 px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    className="block w-1/2 px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                />
                                 {errors.quantity?.type === 'required' && <p className="text-red-500 text-left"><small>"Quantity is required"</small></p>}
                                 {errors.quantity?.type === 'min' && <p className="text-red-500 text-left"><small>"Quantity should more then minimum Quantity"</small></p>}
                                 {errors.quantity?.type === 'max' && <p className="text-red-500 text-left"><small>"Quantity should lower then Available Quaantity"</small></p>}
@@ -107,7 +114,7 @@ const Purchase = () => {
                                 type='submit'
                                 disabled={btnDisable}
                                 value='Place Order'
-                                className="btn w-full btn-primary text-left"
+                                className="btn w-full btn-primary text-left mt-4"
                             />
                         </form>
                     </div>
