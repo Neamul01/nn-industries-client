@@ -30,19 +30,16 @@ const Purchase = () => {
         if (Number(inputQuantity) < Number(minimumQuantity) || Number(inputQuantity) > Number(availableQuantity)) {
             setCustomError('Invalid Quantity..')
             setBtnDisable(true)
-            console.log('inside error')
         }
         else {
             setBtnDisable(false);
             setCustomError('')
-            console.log(' error')
         }
     }
 
     const onSubmit = data => {
         console.log(data)
     };
-
 
     return (
         <section className=" dark:bg-gray-900 lg:py-12 lg:flex lg:justify-around">
@@ -64,14 +61,26 @@ const Purchase = () => {
                         <div className='w-full'>
                             <label htmlFor="Name" className="block text-sm text-gray-800 dark:text-gray-200">Name</label>
                             <input type="text"
-                            {...register("name")}
+                            defaultValue={user?.displayName||''}
+                            disabled
                                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
                         </div>
 
                         <div className='w-full'>
                             <label htmlFor="email" className="block text-sm text-gray-800 dark:text-gray-200">Email</label>
                             <input type="email"
-                            {...register("email")}
+                            defaultValue={user?.email||''}
+                            disabled
+                                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
+                        </div>
+
+                        <div className='w-full'>
+                            <label htmlFor="address" className="block text-sm text-gray-800 dark:text-gray-200">Address</label>
+                            {errors.address?.type === 'required' && <p className="text-red-500 text-left"><small>"Address is required"</small></p>}
+                            <input type="text"
+                            {...register("address",{
+                                required: true
+                            })}
                                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
                         </div>
 
@@ -81,10 +90,18 @@ const Purchase = () => {
                             </div>
 
                             <input type="number"
-                            {...register("quantity")}
+                            {...register("quantity",{
+                                required: true,
+                                min: minimumQuantity,
+                                max: availableQuantity
+                            })}
                             onBlur={e=>handleQuantity(e.target.value)}
                                 placeholder='Quantity...'
                                 className="block w-1/3 px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                {errors.quantity?.type === 'required' && <p className="text-red-500 text-left"><small>"Quantity is required"</small></p>}
+                                {errors.quantity?.type === 'min' && <p className="text-red-500 text-left"><small>"Quantity should more then minimum Quantity"</small></p>}
+                                {errors.quantity?.type === 'max' && <p className="text-red-500 text-left"><small>"Quantity should lower then Available Quaantity"</small></p>}
+                                {customError && <p className="text-red-500 text-left"><small>{customError}</small></p>}
                         </div>
 
                         <div className="mt-6">

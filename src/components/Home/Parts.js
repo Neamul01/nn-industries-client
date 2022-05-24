@@ -14,7 +14,7 @@ const Parts = () => {
         console.log(error)
     }
 
-    console.log(products)
+    // console.log(products)
     let displayProducts;
     if(products.length){
         displayProducts = products?.slice(products.length - 6, products.length);

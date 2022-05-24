@@ -1,12 +1,33 @@
 import React from 'react';
 import HorizontalGallery from 'react-dynamic-carousel'
+import { useQuery } from 'react-query';
+import {request} from '../utils/axios-utils.js'
+import LoadingSpinner from "../Shared/LoadingSpinner";
+import {toast} from 'react-toastify'
+
 
 const Review = () => {
-    const example = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    const {data:reviews, isLoading, error}=useQuery('reviews',async()=>await request({url:'/reviews',method:'get'}))
+
+    if(isLoading){
+        return <LoadingSpinner/>
+    }
+    if(error){
+        toast.error(error?.message)
+    }
+    
+    let displayReview
+    if(reviews.length){
+        displayReview = reviews.slice(-5);
+    }
+    // console.log(displayReview)
+
+
     return (
         <div className='my-6 md:my-8 lg:my-24'>
+            <h2 className="text-3xl text-center text-primary mb-3 md:mb-8 font-bold">Latest Reviews</h2>
             <HorizontalGallery
-                tiles={example.map((value) => (
+                tiles={displayReview?.map((value) => (
                     <div
                         style={{
                             display: 'flex',
@@ -18,7 +39,19 @@ const Review = () => {
                             borderRadius: 10
                         }}
                     >
-                        <h1>{value}</h1>
+                        <div class="card  justify-center items-center">
+                        <div class="avatar">
+  <div class="w-24 m-2 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+    <img src="https://api.lorem.space/image/face?hash=3174" />
+  </div>
+</div>
+                            <div class="card-body items-center text-center">
+                                <h2 class="card-title">{value?.name}</h2>
+                                <p>{value?.description}</p>
+                                {/* {console.log(value)} */}
+                                
+                            </div>
+                            </div>
                     </div>
                 ))}
                 elementWidth={450}
