@@ -40,14 +40,14 @@ const Review = () => {
                             borderRadius: 10
                         }}
                     >
-                        <div class="card  justify-center items-center">
-                            <div class="avatar">
-                                <div class="w-24 m-2 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                        <div className="card  justify-center items-center">
+                            <div className="avatar">
+                                <div className="w-24 m-2 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                                  <img src="https://api.lorem.space/image/face?hash=3174" />
                                 </div>
                             </div>
-                            <div class="card-body items-center text-center">
-                                <h2 class="card-title">{value?.name}</h2>
+                            <div className="card-body items-center text-center">
+                                <h2 className="card-title">{value?.name}</h2>
                                 <p>{value?.description}</p>
                                 <ReactStars
                                     count={value?.ratings}

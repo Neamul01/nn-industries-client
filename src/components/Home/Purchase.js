@@ -24,7 +24,7 @@ const Purchase = () => {
     if (error) {
         toast.error(error.message)
     }
-    const { product, price, minimumQuantity, image, description, availableQuantity } = singleProduct;
+    const { _id,product, price, minimumQuantity, image, description, availableQuantity } = singleProduct;
 
     const handleQuantity = inputQuantity => {
         if (Number(inputQuantity) < Number(minimumQuantity) || Number(inputQuantity) > Number(availableQuantity)) {
@@ -38,7 +38,23 @@ const Purchase = () => {
     }
 
     const onSubmit = data => {
-        console.log(data)
+        const order={
+            productId:id,
+            name:user.displayName,
+            email:user.email,
+            address:data.address,
+            quantity:data.quantity,
+            phone:data.phone,
+        }
+        console.log(order)
+        request({url:'/orders',method:'post',data:order})
+        .then(res=>{
+            toast.success('Order placed successfully...')
+        })
+        .catch(err=>{
+            toast.error(err?.message)
+        })
+        reset()
     };
 
     return (
@@ -59,29 +75,41 @@ const Purchase = () => {
                         <p className="text-left font-bold w-full ">Price:{price} </p>
                         <form onSubmit={handleSubmit(onSubmit)} className="mt-6 w-full">
                         <div className='w-full'>
-                            <label htmlFor="Name" className="block text-sm text-gray-800 dark:text-gray-200">Name</label>
+                            <label htmlFor="Name" className="block text-sm text-gray-800 dark:text-gray-200 text-left">Name</label>
                             <input type="text"
                             defaultValue={user?.displayName||''}
                             disabled
                                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
                         </div>
 
-                        <div className='w-full'>
-                            <label htmlFor="email" className="block text-sm text-gray-800 dark:text-gray-200">Email</label>
+                        <div className='w-full mt-4'>
+                            <label htmlFor="email" className="block text-sm text-gray-800 dark:text-gray-200 text-left">Email</label>
                             <input type="email"
                             defaultValue={user?.email||''}
                             disabled
                                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
                         </div>
 
-                        <div className='w-full'>
-                            <label htmlFor="address" className="block text-sm text-gray-800 dark:text-gray-200">Address</label>
-                            {errors.address?.type === 'required' && <p className="text-red-500 text-left"><small>"Address is required"</small></p>}
+                        <div className='w-full mt-4'>
+                            <label htmlFor="address" className="block text-sm text-gray-800 dark:text-gray-200 text-left">Address</label>
+                            
                             <input type="text"
                             {...register("address",{
                                 required: true
                             })}
                                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                {errors.address?.type === 'required' && <p className="text-red-500 text-left"><small>"Address is required"</small></p>}
+                        </div>
+
+                        <div className='w-full mt-4'>
+                            <label htmlFor="phone" className="block text-sm text-gray-800 dark:text-gray-200 text-left">Phone Number</label>
+                            
+                            <input type="number"
+                            {...register("phone",{
+                                required: true
+                            })}
+                                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                {errors.number?.type === 'required' && <p className="text-red-500 text-left"><small>"Number is required"</small></p>}
                         </div>
 
                         <div className="mt-4">
