@@ -18,14 +18,6 @@ const Purchase = () => {
 
     const { data: singleProduct, isLoading, error } = useQuery('singleProduct', async () => await request({ url: `/products/${id}`, method: 'get' }))
 
-
-    const formSubmit = data => {
-        console.log(data)
-        console.log("submit")
-    };
-
-
-
     if (isLoading) {
         return <LoadingSpinner></LoadingSpinner>
     }
@@ -35,7 +27,6 @@ const Purchase = () => {
     const { product, price, minimumQuantity, image, description, availableQuantity } = singleProduct;
 
     const handleQuantity = inputQuantity => {
-        // console.log(inputQuantity)
         if (Number(inputQuantity) < Number(minimumQuantity) || Number(inputQuantity) > Number(availableQuantity)) {
             setCustomError('Invalid Quantity..')
             setBtnDisable(true)
@@ -45,6 +36,12 @@ const Purchase = () => {
             setCustomError('')
         }
     }
+
+    const formSubmit = data => {
+        console.log(data)
+        console.log("submit")
+    };
+
 
     return (
         <section className=" dark:bg-gray-900 lg:py-12 lg:flex lg:justify-around">
@@ -66,7 +63,7 @@ const Purchase = () => {
                             <div >
                                 <label htmlFor="username" className="block text-sm text-gray-800 dark:text-gray-200 text-left">Name</label>
                                 <input type="text"
-                                    {...register("name", { required: true })}
+                                    // {...register("name", { required: true })}
                                     value={user?.displayName || ''}
                                     disabled
                                     className="block w-full px-4 py-2  text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
@@ -79,7 +76,7 @@ const Purchase = () => {
                                 </div>
 
                                 <input type="email"
-                                    {...register("email", { required: true })}
+                                    // {...register("email", { required: true })}
                                     value={user?.email || ''}
                                     disabled
                                     className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
