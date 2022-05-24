@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import {request} from '../utils/axios-utils.js'
 import LoadingSpinner from "../Shared/LoadingSpinner";
 import {toast} from 'react-toastify'
+import ReactStars from "react-rating-stars-component";
 
 
 const Review = () => {
@@ -40,18 +41,21 @@ const Review = () => {
                         }}
                     >
                         <div class="card  justify-center items-center">
-                        <div class="avatar">
-  <div class="w-24 m-2 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-    <img src="https://api.lorem.space/image/face?hash=3174" />
-  </div>
-</div>
+                            <div class="avatar">
+                                <div class="w-24 m-2 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                 <img src="https://api.lorem.space/image/face?hash=3174" />
+                                </div>
+                            </div>
                             <div class="card-body items-center text-center">
                                 <h2 class="card-title">{value?.name}</h2>
                                 <p>{value?.description}</p>
-                                {/* {console.log(value)} */}
-                                
+                                <ReactStars
+                                    count={value?.ratings}
+                                    color={'#000000'}
+                                    size={32}
+                                />
                             </div>
-                            </div>
+                        </div>
                     </div>
                 ))}
                 elementWidth={450}
