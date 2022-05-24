@@ -16,7 +16,7 @@ const PartsItems = ({ singleProduct }) => {
                     <p className='text-left font-bold'>Available: {availableQuantity} </p>
                 </div>
                 <p className="text-left font-bold w-full ">Price: {price} </p>
-                <Link to={"/purchase"} className="btn w-full btn-primary text-left">Purchase</Link>
+                <Link to={`/purchase/${_id}`} className="btn w-full btn-primary text-left">Purchase</Link>
             </div>
         </div>
     );

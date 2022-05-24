@@ -1,13 +1,13 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth'
+import { useParams } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 
 const Purchase = () => {
     const [user] = useAuthState(auth);
-
-
-
+    const { id } = useParams();
+    console.log(id)
     return (
 
         <section className=" dark:bg-gray-900 lg:py-12 lg:flex lg:justify-around">
@@ -19,6 +19,7 @@ const Purchase = () => {
                 <div className="max-w-xl px-6 py-12 lg:max-w-5xl lg:w-1/2">
                     <div className="card-body items-center text-center">
                         <h2 className="card-title">Shoes!</h2>
+                        <p>{id}</p>
                         <p>If a dog chews shoes whose shoes does he choose?</p>
                         <div className="flex w-full">
                             <p className='text-left font-bold'>Min Quantity: </p>

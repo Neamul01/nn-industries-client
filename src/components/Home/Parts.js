@@ -6,7 +6,7 @@ import PartsItems from './PartsItems';
 const Parts = () => {
     const { products, isLoading, error } = useProducts();
 
-    const displayProducts = products.slice(products.length - 6, products.length);
+    const displayProducts = products?.slice(products.length - 6, products.length);
     // console.log(displayProducts)
 
     if (isLoading) {
