@@ -1,21 +1,12 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { useQuery } from 'react-query';
 import auth from '../../firebase.init';
-import LoadingSpinner from '../Shared/LoadingSpinner';
-import { request } from '../utils/axios-utils';
+
 
 const Purchase = () => {
     const [user] = useAuthState(auth);
-    const { data: products, isLoading, error } = useQuery('products', async () => await request({ url: '/products', method: 'get' }))
-    console.log('product', products)
 
-    if (isLoading) {
-        return <LoadingSpinner></LoadingSpinner>
-    }
-    if (error) {
-        console.log(error)
-    }
+
 
     return (
 
