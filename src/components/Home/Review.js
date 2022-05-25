@@ -1,25 +1,25 @@
 import React from 'react';
 import HorizontalGallery from 'react-dynamic-carousel'
 import { useQuery } from 'react-query';
-import {request} from '../utils/axios-utils.js'
+import { request } from '../utils/axios-utils.js'
 import LoadingSpinner from "../Shared/LoadingSpinner";
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify'
 import ReactStars from "react-rating-stars-component";
 
 
 const Review = () => {
-    const {data:reviews, isLoading, error}=useQuery('reviews',async()=>await request({url:'/reviews',method:'get'}))
+    const { data: reviews, isLoading, error } = useQuery('reviews', async () => await request({ url: '/reviews', method: 'get' }))
 
-    if(isLoading){
-        return <LoadingSpinner/>
+    if (isLoading) {
+        return <LoadingSpinner />
     }
-    if(error){
+    if (error) {
         toast.error(error?.message)
     }
-    
+
     let displayReview
-    if(reviews.length){
-        displayReview = reviews.slice(-5);
+    if (reviews.length) {
+        displayReview = reviews.slice(-5).reverse();
     }
     // console.log(displayReview)
 
@@ -43,7 +43,7 @@ const Review = () => {
                         <div className="card  justify-center items-center">
                             <div className="avatar">
                                 <div className="w-24 m-2 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                 <img src="https://api.lorem.space/image/face?hash=3174" />
+                                    <img src="https://api.lorem.space/image/face?hash=3174" />
                                 </div>
                             </div>
                             <div className="card-body items-center text-center">

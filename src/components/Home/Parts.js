@@ -6,7 +6,7 @@ import PartsItems from '../Home/PartsItems'
 
 const Parts = () => {
     const { data: products, isLoading, error } = useQuery('products', async () => await request({ url: '/products', method: 'get' }));
-    
+
     if (isLoading) {
         return <LoadingSpinner></LoadingSpinner>
     }
@@ -16,13 +16,13 @@ const Parts = () => {
 
     // console.log(products)
     let displayProducts;
-    if(products.length){
-        displayProducts = products?.slice(products.length - 6, products.length);
+    if (products.length) {
+        displayProducts = products?.slice(-6).reverse();
     }
 
     return (
         <div className='my-6 md:my-12 lg:my-24'>
-            <h2 className="text-3xl text-center text-primary mb-3 md:mb-8 font-bold">Products</h2>
+            <h2 className="text-3xl text-center text-primary mb-3 md:mb-8 font-bold">Parts</h2>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-5 lg:grid-cols-3 '>
                 {
                     displayProducts?.map(singleProduct => <PartsItems

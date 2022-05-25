@@ -46,7 +46,7 @@ const Purchase = () => {
             quantity:data.quantity,
             phone:data.phone,
         }
-        console.log(order)
+        // console.log(order)
         request({url:'/orders',method:'post',data:order})
         .then(res=>{
             toast.success('Order placed successfully...')

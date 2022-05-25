@@ -1,19 +1,19 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-import {request} from '../utils/axios-utils'
-import {toast} from 'react-toastify'
+import { request } from '../utils/axios-utils'
+import { toast } from 'react-toastify'
 
 const AddReview = () => {
-    const { register, handleSubmit, formState: { errors },reset } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     const onSubmit = data => {
         console.log(data);
-        request({ url: `/reviews`, method: 'post',data:data })
-        .then(res=>{
-            toast.success('Review Added Successfully...')
-            // reset()
-        })
-        .catch(err=>console.log(err))
+        request({ url: `/reviews`, method: 'post', data: data })
+            .then(res => {
+                toast.success('Review Added Successfully...')
+                reset()
+            })
+            .catch(err => console.log(err))
     };
 
     return (
@@ -27,7 +27,7 @@ const AddReview = () => {
                         <div className='w-full'>
                             <label htmlFor="Name" className="block text-sm text-gray-800 dark:text-gray-200">Name</label>
                             <input type="text"
-                            {...register("name")}
+                                {...register("name")}
                                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
                         </div>
 
@@ -37,7 +37,7 @@ const AddReview = () => {
                             </div>
 
                             <input type="number"
-                            {...register("ratings")}
+                                {...register("ratings")}
                                 placeholder='Your ratings...'
                                 className="block w-1/3 px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
                         </div>
@@ -48,16 +48,16 @@ const AddReview = () => {
                             </div>
 
                             <textarea type="text"
-                            {...register("description")}
+                                {...register("description")}
                                 placeholder='Please write more about us...'
                                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
                         </div>
 
                         <div className="mt-6">
                             <input type='submit'
-                            value='submit'
-                                className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"/>
-                                
+                                value='submit'
+                                className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600" />
+
                         </div>
 
                     </form>
