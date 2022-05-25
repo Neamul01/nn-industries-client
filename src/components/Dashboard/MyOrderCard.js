@@ -1,20 +1,12 @@
-import React from 'react';
-import { request } from '../utils/axios-utils';
+import React, { useState } from 'react';
+import CancelOrderModal from './CancelOrderModal';
 
 const MyOrderCard = ({ order, refetch }) => {
     const { _id, name, address, quantity, price, image } = order;
+    const [cancel, setCancel] = useState(null)
     // console.log(order)
 
-    const handleDelete = () => {
-        request({ url: `/orders/${_id}`, method: 'delete' })
-            .then(res => {
-                console.log(res)
-                refetch();
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
+
 
     return (
         <div className="flex max-w-4xl w-full mx-auto overflow-hidden rounded-lg shadow-lg dark:bg-gray-800">
@@ -33,12 +25,23 @@ const MyOrderCard = ({ order, refetch }) => {
 
                 <div className="flex justify-around mt-3 item-center flex-col ">
                     <button
-                        className="px-2 py-1 text-xs max-h-8 font-bold text-white uppercase transition-colors duration-200 transform bg-accent rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600">Pay</button>
-                    <button
-                        onClick={handleDelete}
-                        className="px-2 py-1 text-xs  font-bold text-white uppercase transition-colors duration-200 transform bg-red-500 rounded dark:bg-red-700 hover:bg-red-700 dark:hover:bg-red-600 focus:outline-none focus:bg-red-700 dark:focus:bg-red-600">Cancel</button>
+                        className="px-4 py-2 text-xs max-h-8 font-bold text-white uppercase transition-colors duration-200 transform bg-accent rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600">Pay
+                    </button>
+
+                    <label
+                        onClick={() => setCancel(order)}
+                        for="cancel-order-modal"
+                        className="px-4 py-2 text-xs cursor-pointer font-bold text-white uppercase transition-colors duration-200 transform bg-red-500 rounded dark:bg-red-700 hover:bg-red-700 dark:hover:bg-red-600 focus:outline-none focus:bg-red-700 dark:focus:bg-red-600">Cancel
+                    </label>
                 </div>
             </div>
+            {
+                cancel && <CancelOrderModal
+                    setCancel={setCancel}
+                    cancel={cancel}
+                    refetch={refetch}
+                ></CancelOrderModal>
+            }
         </div>
     );
 };
