@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CancelOrderModal from './CancelOrderModal';
 
 const MyOrderCard = ({ order, refetch }) => {
-    const { _id, name, address, quantity, price, image } = order;
+    const { name, address, quantity, price, image } = order;
     const [cancel, setCancel] = useState(null)
     // console.log(order)
 
