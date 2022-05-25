@@ -6,7 +6,7 @@ import { request } from '../utils/axios-utils';
 import MyOrderCard from './MyOrderCard';
 
 const MyOrder = () => {
-    const { data: orders, isLoading, error, refetch } = useQuery('Orders', async () => request({ url: '/orders', method: 'get' }));
+    const { data: orders, isLoading, error, refetch } = useQuery('Orders', async () => await request({ url: '/orders', method: 'get' }));
 
     if (isLoading) {
         return <LoadingSpinner></LoadingSpinner>

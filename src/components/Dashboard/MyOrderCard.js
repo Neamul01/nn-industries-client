@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import CancelOrderModal from './CancelOrderModal';
 
 const MyOrderCard = ({ order, refetch }) => {
-    const { name, address, quantity, price, image } = order;
+    const { _id, name, address, quantity, price, image } = order;
     const [cancel, setCancel] = useState(null)
     // console.log(order)
 
@@ -20,13 +21,14 @@ const MyOrderCard = ({ order, refetch }) => {
                         <h3 className="text-md font-semibold text-gray-700 dark:text-gray-200 md:text-md">Quantity: {quantity}</h3>
                         <h3 className="text-md font-semibold text-gray-700 dark:text-gray-200 md:text-md">Price: ${price}</h3>
                     </div>
-                    <h3 className="text-lg font-bold text-gray-700 dark:text-gray-200 md:text-xl">Total price: ${price * quantity}</h3>
+                    <h3 className="text-lg font-bold text-gray-700 dark:text-gray-200 md:text-xl">Total price: ${Number(price) * Number(quantity)}</h3>
                 </div>
 
                 <div className="flex justify-around mt-3 item-center flex-col ">
-                    <button
+                    <Link
+                        to={`/dashboard/payment/${_id}`}
                         className="px-4 py-2 text-xs max-h-8 font-bold text-white uppercase transition-colors duration-200 transform bg-accent rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600">Pay
-                    </button>
+                    </Link>
 
                     <label
                         onClick={() => setCancel(order)}

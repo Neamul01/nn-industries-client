@@ -20,6 +20,7 @@ import Portfolio from './components/Portfolio/Portfolio';
 import Blogs from './components/Blogs/Blogs';
 import RequireAuth from './components/Shared/RequireAuth';
 import NotFound from './components/Shared/NotFound'
+import Payment from './components/Dashboard/Payment';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           }>
             <Route index element={<MyOrder />}></Route>
             <Route path='myreview' element={<AddReview />}></Route>
+            <Route path='payment/:id' element={<Payment />}></Route>
             <Route path='myprofile' element={<MyProfile />}></Route>
 
             <Route path='allorders' element={<AllOrders />}></Route>
