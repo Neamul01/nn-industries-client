@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ProductDeleteModal from './ProductDeleteModal';
 
 const ManageProductCard = ({ index, singleProduct, refetch }) => {
-    const { _id, product, price, minimumQuantity, image, description, availableQuantity } = singleProduct;
+    const { product, price, minimumQuantity, image, description, availableQuantity } = singleProduct;
     const [productDelete, setProductDelete] = useState(null)
 
 
