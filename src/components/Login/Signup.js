@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
 import SocialLogin from './SocialLogin';
 import LoadingSpinner from '../Shared/LoadingSpinner';
+import { sendEmailVerification } from 'firebase/auth';
+import { toast } from 'react-toastify';
 
 const Signup = () => {
-    const [
-        createUserWithEmailAndPassword,
-        user,
-        loading,
-        error,
-    ] = useCreateUserWithEmailAndPassword(auth);
+    const [createUserWithEmailAndPassword, user, loading, error,] = useCreateUserWithEmailAndPassword(auth);
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [customError, setCustomError] = useState('');
 
@@ -20,24 +18,31 @@ const Signup = () => {
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
 
-    const onSubmit = data => {
+    const onSubmit = async data => {
         console.log(data)
         if (data.password !== data.confirmPassword) {
             setCustomError('Password and Confirm password must be same.')
         }
         else {
-            createUserWithEmailAndPassword(data.email, data.password)
+            await createUserWithEmailAndPassword(data.email, data.password);
+            await updateProfile({ displayName: data.name });
+            await sendEmailVerification();
+            toast.success('Check you inbox and varify email address...')
         }
     };
+    console.log(user)
 
     useEffect(() => {
         if (user) {
             navigate(from, { replace: true })
         }
-    }, [user, navigate])
+    }, [user, navigate, from])
 
-    if (loading) {
+    if (loading || updating) {
         return <LoadingSpinner></LoadingSpinner>
+    }
+    if (error || updateError) {
+        toast.error(error?.message || updateError?.message)
     }
 
     return (
