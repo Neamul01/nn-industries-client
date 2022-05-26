@@ -6,7 +6,7 @@ import { request } from '../../utils/axios-utils';
 import ManageProductCard from './ManageProductCard';
 
 const ManageProducts = () => {
-    const { data: allProducts, isLoading, error } = useQuery('allProducts', async () => await request({ url: `/products`, method: 'get' }));
+    const { data: allProducts, isLoading, error, refetch } = useQuery('allProducts', async () => await request({ url: `/products`, method: 'get' }));
 
     if (isLoading) {
         return <LoadingSpinner></LoadingSpinner>
@@ -39,6 +39,7 @@ const ManageProducts = () => {
                                 key={singleProduct._id}
                                 index={index}
                                 singleProduct={singleProduct}
+                                refetch={refetch}
                             ></ManageProductCard>)
                         }
                     </tbody>
