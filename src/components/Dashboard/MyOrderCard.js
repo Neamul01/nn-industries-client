@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import CancelOrderModal from './CancelOrderModal';
 
 const MyOrderCard = ({ order, refetch }) => {
-    const { _id, name, address, quantity, price, image } = order;
+    const { _id, name, address, quantity, price, image, paid, transactionId } = order;
     const [cancel, setCancel] = useState(null)
     // console.log(order)
 
@@ -22,18 +22,33 @@ const MyOrderCard = ({ order, refetch }) => {
                         <h3 className="text-md font-semibold text-gray-700 dark:text-gray-200 md:text-md">Price: ${price}</h3>
                     </div>
                     <h3 className="text-lg font-bold text-gray-700 dark:text-gray-200 md:text-xl">Total price: ${Number(price) * Number(quantity)}</h3>
+                    {
+                        paid === true
+                        &&
+                        <p className="text-md font-semibold text-success dark:text-success md:text-md">TransactionId: {transactionId}</p>
+                    }
                 </div>
 
                 <div className="flex justify-around mt-3 item-center flex-col ">
-                    <Link
-                        to={`/dashboard/payment/${_id}`}
-                        className="px-4 py-2 text-xs max-h-8 font-bold text-white uppercase transition-colors duration-200 transform bg-accent rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600">Pay
-                    </Link>
+                    {
+                        paid
+                            ?
+                            <button
+                                className="px-4 py-2 text-xs cursor-auto max-h-8 font-bold text-white uppercase transition-colors duration-200 transform bg-gray-400 rounded dark:bg-gray-700   focus:outline-none  ">Paid
+                            </button>
+                            :
+                            <Link
+                                to={`/dashboard/payment/${_id}`}
+                                className="px-4 py-2 text-xs max-h-8 font-bold text-white uppercase transition-colors duration-200 transform bg-accent rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600">Pay
+                            </Link>
+                    }
 
                     <label
+                        disabled={paid === true}
                         onClick={() => setCancel(order)}
-                        for="cancel-order-modal"
-                        className="px-4 py-2 text-xs cursor-pointer font-bold text-white uppercase transition-colors duration-200 transform bg-red-500 rounded dark:bg-red-700 hover:bg-red-700 dark:hover:bg-red-600 focus:outline-none focus:bg-red-700 dark:focus:bg-red-600">Cancel
+                        htmlFor="cancel-order-modal"
+                        className={paid === true ? "px-4 py-2 text-xs font-bold text-white uppercase transition-colors duration-200 transform rounded bg-gray-400"
+                            : " cursor-pointer font-bold text-white uppercase transition-colors duration-200 transform bg-red-500 rounded dark:bg-red-700 hover:bg-red-700 dark:hover:bg-red-600 focus:outline-none focus:bg-red-700 dark:focus:bg-red-600"}>Cancel
                     </label>
                 </div>
             </div>
@@ -44,7 +59,7 @@ const MyOrderCard = ({ order, refetch }) => {
                     refetch={refetch}
                 ></CancelOrderModal>
             }
-        </div>
+        </div >
     );
 };
 

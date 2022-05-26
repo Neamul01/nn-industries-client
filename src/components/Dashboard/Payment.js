@@ -22,10 +22,10 @@ const Payment = () => {
     if (error) {
         toast.error(error?.message)
     }
-    console.log(singleOrder)
+    // console.log(singleOrder)
 
 
-    const { name, address, email, image, price, quantity } = singleOrder;
+    const { name, address, email, image, price, quantity, paid } = singleOrder;
 
 
     return (
@@ -55,7 +55,9 @@ const Payment = () => {
             <div className="card flex-shrink-0 w-full max-w-lg shadow-2xl bg-base-100">
                 <div className="card-body">
                     <Elements stripe={stripePromise}>
-                        <CheckoutForm setProcessing={setProcessing} singleOrder={singleOrder} />
+                        <CheckoutForm
+                            setProcessing={setProcessing}
+                            singleOrder={singleOrder} />
                     </Elements>
 
                 </div>

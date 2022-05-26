@@ -12,7 +12,7 @@ const CheckoutForm = ({ singleOrder, setProcessing }) => {
     const [transactionId, setTransactionId] = useState('');
     const [clientSecret, setClientSecret] = useState('');
 
-    const { _id, name, address, email, price, quantity } = singleOrder;
+    const { _id, paid, email, price, quantity } = singleOrder;
     const [user] = useAuthState(auth);
 
     const totalPrice = Number(price) * Number(quantity);
@@ -110,7 +110,7 @@ const CheckoutForm = ({ singleOrder, setProcessing }) => {
                         },
                     }}
                 />
-                <button type="submit" className=' btn btn-md btn-success mt-4' disabled={!stripe || !clientSecret}>
+                <button type="submit" className=' btn btn-md btn-success mt-4' disabled={!stripe || !clientSecret || paid === true}>
                     Pay
                 </button>
             </form>
