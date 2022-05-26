@@ -7,19 +7,20 @@ import SocialLogin from './SocialLogin';
 import LoadingSpinner from '../Shared/LoadingSpinner';
 import { sendEmailVerification } from 'firebase/auth';
 import { toast } from 'react-toastify';
+import useToken from '../../hooks/useToken';
 
 const Signup = () => {
     const [createUserWithEmailAndPassword, user, loading, error,] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [customError, setCustomError] = useState('');
+    const [token] = useToken(user);
 
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
 
     const onSubmit = async data => {
-        console.log(data)
         if (data.password !== data.confirmPassword) {
             setCustomError('Password and Confirm password must be same.')
         }
@@ -30,13 +31,13 @@ const Signup = () => {
             toast.success('Check you inbox and varify email address...')
         }
     };
-    console.log(user)
+    // console.log(user.data)
 
     useEffect(() => {
-        if (user) {
+        if (token) {
             navigate(from, { replace: true })
         }
-    }, [user, navigate, from])
+    }, [token, navigate, from])
 
     if (loading || updating) {
         return <LoadingSpinner></LoadingSpinner>

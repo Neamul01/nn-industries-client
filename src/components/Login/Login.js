@@ -6,6 +6,7 @@ import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
 import SocialLogin from './SocialLogin';
 import LoadingSpinner from '../Shared/LoadingSpinner';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
     const [
@@ -15,6 +16,7 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [token] = useToken(user);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -25,10 +27,10 @@ const Login = () => {
     };
 
     useEffect(() => {
-        if (user) {
+        if (token) {
             navigate(from, { replace: true })
         }
-    }, [user, navigate, from])
+    }, [token, navigate, from])
 
     if (loading) {
         return <LoadingSpinner></LoadingSpinner>
