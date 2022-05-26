@@ -9,7 +9,7 @@ import MyOrderCard from './MyOrderCard';
 
 const MyOrder = () => {
     const [user] = useAuthState(auth);
-    const { data: orders, isLoading, error, refetch } = useQuery('Orders', async () => await request({ url: `/orders/${user?.email}`, method: 'get' }));
+    const { data: orders, isLoading, error, refetch } = useQuery('myOrders', async () => await request({ url: `/orders/${user?.email}`, method: 'get' }));
 
     if (isLoading) {
         return <LoadingSpinner></LoadingSpinner>
