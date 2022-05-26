@@ -1,6 +1,21 @@
 import React from 'react';
+import { useQuery } from 'react-query';
+import { toast } from 'react-toastify';
+import LoadingSpinner from '../../Shared/LoadingSpinner';
+import { request } from '../../utils/axios-utils';
+import ManageProductCard from './ManageProductCard';
 
 const ManageProducts = () => {
+    const { data: allProducts, isLoading, error } = useQuery('allProducts', async () => await request({ url: `/products`, method: 'get' }));
+
+    if (isLoading) {
+        return <LoadingSpinner></LoadingSpinner>
+    }
+    if (error) {
+        toast.error(error?.message)
+    }
+
+
     return (
         <div className='w-full'>
             <h2 className="text-2xl text-center text-secondary font-bold mb-4">Manage All Products</h2>
@@ -13,41 +28,19 @@ const ManageProducts = () => {
                             <th></th>
                             <th>Products</th>
                             <th>Available</th>
-                            <th>Sold</th>
+                            <th>Price</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         {/* <!-- row 1 --> */}
-                        <tr>
-                            <th>1</th>
-                            <td>Cy Ganderton</td>
-                            <td>Quality Control Specialist</td>
-                            <td>Blue</td>
-                            <td>
-                                <button className="btn btn-xs btn-accent">Cancel</button>
-                            </td>
-                        </tr>
-                        {/* <!-- row 2 --> */}
-                        <tr>
-                            <th>2</th>
-                            <td>Hart Hagerty</td>
-                            <td>Desktop Support Technician</td>
-                            <td>Purple</td>
-                            <td>
-                                <button className="btn btn-xs btn-accent">Cancel</button>
-                            </td>
-                        </tr>
-                        {/* <!-- row 3 --> */}
-                        <tr>
-                            <th>3</th>
-                            <td>Brice Swyre</td>
-                            <td>Tax Accountant</td>
-                            <td>Red</td>
-                            <td>
-                                <button className="btn btn-xs btn-accent">Cancel</button>
-                            </td>
-                        </tr>
+                        {
+                            allProducts?.map((singleProduct, index) => <ManageProductCard
+                                key={singleProduct._id}
+                                index={index}
+                                singleProduct={singleProduct}
+                            ></ManageProductCard>)
+                        }
                     </tbody>
                 </table>
             </div>
