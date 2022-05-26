@@ -22,7 +22,7 @@ const Payment = () => {
     if (error) {
         toast.error(error?.message)
     }
-    // console.log(singleOrder)
+    console.log(singleOrder)
 
 
     const { name, address, email, image, price, quantity } = singleOrder;

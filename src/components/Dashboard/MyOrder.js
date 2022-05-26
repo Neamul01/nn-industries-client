@@ -27,7 +27,7 @@ const MyOrder = () => {
 
             <div className='w-full flex flex-col gap-2 md:gap-6'>
                 {
-                    reverseOrder.map(order => <MyOrderCard
+                    reverseOrder?.map(order => <MyOrderCard
                         key={order._id}
                         order={order}
                         refetch={refetch}
