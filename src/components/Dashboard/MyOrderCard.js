@@ -39,7 +39,7 @@ const MyOrderCard = ({ order, refetch }) => {
                             :
                             <Link
                                 to={`/dashboard/payment/${_id}`}
-                                className="px-4 py-2 text-xs max-h-8 font-bold text-white uppercase transition-colors duration-200 transform bg-accent rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600">Pay
+                                className="px-4 py-2 text-xs text-center max-h-8 font-bold text-white uppercase transition-colors duration-200 transform bg-accent rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600">Pay
                             </Link>
                     }
 
@@ -48,7 +48,7 @@ const MyOrderCard = ({ order, refetch }) => {
                         onClick={() => setCancel(order)}
                         htmlFor="cancel-order-modal"
                         className={paid === true ? "px-4 py-2 text-xs font-bold text-white uppercase transition-colors duration-200 transform rounded bg-gray-400"
-                            : " cursor-pointer font-bold text-white uppercase transition-colors duration-200 transform bg-red-500 rounded dark:bg-red-700 hover:bg-red-700 dark:hover:bg-red-600 focus:outline-none focus:bg-red-700 dark:focus:bg-red-600"}>Cancel
+                            : " cursor-pointer font-bold text-white px-4 py-2 text-xs uppercase transition-colors duration-200 transform bg-red-500 rounded dark:bg-red-700 hover:bg-red-700 dark:hover:bg-red-600 focus:outline-none focus:bg-red-700 dark:focus:bg-red-600"}>Cancel
                     </label>
                 </div>
             </div>

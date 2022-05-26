@@ -1,12 +1,15 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
+import auth from '../../firebase.init';
 import LoadingSpinner from '../Shared/LoadingSpinner';
 import { request } from '../utils/axios-utils';
 import MyOrderCard from './MyOrderCard';
 
 const MyOrder = () => {
-    const { data: orders, isLoading, error, refetch } = useQuery('Orders', async () => await request({ url: '/orders', method: 'get' }));
+    const [user] = useAuthState(auth);
+    const { data: orders, isLoading, error, refetch } = useQuery('Orders', async () => await request({ url: `/orders/${user?.email}`, method: 'get' }));
 
     if (isLoading) {
         return <LoadingSpinner></LoadingSpinner>
