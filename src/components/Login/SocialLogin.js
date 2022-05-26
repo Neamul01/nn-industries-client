@@ -1,6 +1,38 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init'
+import { useLocation, useNavigate } from 'react-router-dom';
+import LoadingSpinner from '../Shared/LoadingSpinner'
+import useToken from '../../hooks/useToken'
 
 const SocialLogin = () => {
+    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+    const [token] = useToken(user)
+
+
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location?.state?.from?.pathname || '/';
+
+    const handleGoogleSingin = async () => {
+        await signInWithGoogle();
+    }
+    let signinError;
+
+    useEffect(() => {
+        if (user) {
+            navigate(from, { replace: true });
+        }
+    }, [user, from, navigate])
+
+    if (loading) {
+        return <LoadingSpinner></LoadingSpinner>
+    }
+
+
+    if (error) {
+        signinError = <p className='text-red-500 text-left'><small>{error?.message}</small></p>
+    }
     return (
         <div>
 
@@ -12,8 +44,10 @@ const SocialLogin = () => {
                 <span className="w-1/5 border-b dark:border-gray-400 lg:w-1/5"></span>
             </div>
 
+            {signinError}
             <div className="flex items-center mt-6 -mx-2">
                 <button type="button"
+                    onClick={handleGoogleSingin}
                     className="flex items-center justify-center w-full px-6 py-2 mx-2 text-sm font-medium text-white transition-colors duration-200 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:bg-blue-400 focus:outline-none">
                     <svg className="w-4 h-4 mx-2 fill-current" viewBox="0 0 24 24">
                         <path

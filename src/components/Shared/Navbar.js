@@ -37,7 +37,7 @@ const Navbar = () => {
                         user ?
                             <button onClick={handleSignOut} className="btn btn-ghost">Sign Out</button>
                             :
-                            <Link to={'/login'} className="btn btn-ghost">Sign Up</Link>
+                            <Link to={'/login'} className="btn btn-ghost">Login</Link>
                     }
                 </ul>
             </div>
