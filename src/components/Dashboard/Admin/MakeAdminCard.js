@@ -1,15 +1,17 @@
 import React from 'react';
 import { request } from '../../utils/axios-utils';
 
-const MakeAdminCard = ({ user }) => {
-    const { _id, email } = user;
+const MakeAdminCard = ({ user, refetch }) => {
+    const { email, role } = user;
 
     const handleMakeAdmin = () => {
-        request({ url: `/users/${_id}`, method: 'patch' })
+        request({ url: `/users/admin/${email}`, method: 'put' })
             .then(res => {
                 console.log(res)
+                refetch()
             })
     }
+    console.log(user)
 
     return (
         <tr>
@@ -35,9 +37,17 @@ const MakeAdminCard = ({ user }) => {
                 <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
             </td>
             <th>
-                <button
-                    onClick={handleMakeAdmin}
-                    className="btn btn-accent btn-sm">Make Admin</button>
+                {
+                    role === 'admin'
+                        ? <button
+                            className="btn btn-success btn-sm">Admin
+                        </button>
+                        :
+                        <button
+                            onClick={handleMakeAdmin}
+                            className="btn btn-accent btn-sm">Make Admin
+                        </button>
+                }
             </th>
         </tr>
     );

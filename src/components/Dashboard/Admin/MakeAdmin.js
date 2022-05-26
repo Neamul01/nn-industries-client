@@ -6,7 +6,7 @@ import { request } from '../../utils/axios-utils';
 import MakeAdminCard from './MakeAdminCard';
 
 const MakeAdmin = () => {
-    const { data: users, isLoading, error } = useQuery('users', async () => await request({ url: `/users`, method: 'get' }));
+    const { data: users, isLoading, error, refetch } = useQuery('users', async () => await request({ url: `/users`, method: 'get' }));
 
     if (isLoading) {
         return <LoadingSpinner></LoadingSpinner>
@@ -32,10 +32,11 @@ const MakeAdmin = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {
+                        {users.length &&
                             users?.map(user => <MakeAdminCard
                                 key={user?.key}
                                 user={user}
+                                refetch={refetch}
                             ></MakeAdminCard>)
                         }
                     </tbody>
