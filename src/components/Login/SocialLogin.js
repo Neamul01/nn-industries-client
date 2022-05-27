@@ -20,10 +20,10 @@ const SocialLogin = () => {
     let signinError;
 
     useEffect(() => {
-        if (user) {
+        if (token) {
             navigate(from, { replace: true });
         }
-    }, [user, from, navigate])
+    }, [token, from, navigate])
 
     if (loading) {
         return <LoadingSpinner></LoadingSpinner>
