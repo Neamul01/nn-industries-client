@@ -22,14 +22,14 @@ const Payment = () => {
     if (error) {
         toast.error(error?.message)
     }
-    // console.log(singleOrder)
+    console.log(singleOrder)
 
 
     const { name, address, email, image, price, quantity, paid } = singleOrder;
 
 
     return (
-        <div className='w-full'>
+        <div className='w-full flex  justify-center items-center'>
             {
                 processing && <LoadingSpinner></LoadingSpinner>
             }

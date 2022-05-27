@@ -1,7 +1,7 @@
 import React from 'react';
 import { request } from '../../utils/axios-utils';
 
-const MakeAdminCard = ({ user, refetch }) => {
+const MakeAdminCard = ({ user, refetch, index }) => {
     const { email, role } = user;
 
     const handleMakeAdmin = () => {
@@ -16,7 +16,7 @@ const MakeAdminCard = ({ user, refetch }) => {
     return (
         <tr>
             <th>
-                1
+                {index + 1}
             </th>
             <td>
                 <div className="flex items-center space-x-3">

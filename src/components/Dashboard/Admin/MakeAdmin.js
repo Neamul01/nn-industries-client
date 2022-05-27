@@ -33,9 +33,10 @@ const MakeAdmin = () => {
                     </thead>
                     <tbody>
                         {users.length &&
-                            users?.map(user => <MakeAdminCard
+                            users?.map((user, index) => <MakeAdminCard
                                 key={user?.key}
                                 user={user}
+                                index={index}
                                 refetch={refetch}
                             ></MakeAdminCard>)
                         }

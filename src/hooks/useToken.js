@@ -5,12 +5,13 @@ const useToken = (user) => {
     useEffect(() => {
         const email = user?.user?.email;
         const currentUser = { email: email }
+        console.log(user)
 
 
         ///I cannot use here request(custom axios hook ) why?
 
         if (email) {
-            fetch(`http://localhost:5000/users/${email}`, {
+            fetch(`https://nn-industries-assignment-12.herokuapp.com/users/${email}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

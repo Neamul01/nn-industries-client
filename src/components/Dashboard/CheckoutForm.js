@@ -17,10 +17,12 @@ const CheckoutForm = ({ singleOrder, setProcessing }) => {
 
     const totalPrice = Number(price) * Number(quantity);
 
+    console.log(singleOrder)
+
 
     //---------------------------why not working when i used request(custom axios) ------------------------------------
     useEffect(() => {
-        fetch('http://localhost:5000/create-payment-intent', {
+        fetch('https://nn-industries-assignment-12.herokuapp.com/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
