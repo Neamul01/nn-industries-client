@@ -6,10 +6,16 @@ import { CgProfile } from "react-icons/cg";
 import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { BsNewspaper } from "react-icons/bs";
-// import { FiSettings } from "react-icons/fi";
-// import { FiSettings } from "react-icons/fi";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+import useAdmin from '../../hooks/useAdmin';
 
 const Dashboard = () => {
+    const [user] = useAuthState(auth);
+    const [admin] = useAdmin(user);
+
+    const { photoURL, displayName, email } = user
+
     return (
         <div className='py-6 md:pb-8'>
             <div className="drawer drawer-mobile">
@@ -27,9 +33,10 @@ const Dashboard = () => {
                     <div className="flex flex-col w-64  py-8 bg-white border-r dark:bg-gray-800 dark:border-gray-600 pb-4 overflow-x-hidden">
 
                         <div className="flex flex-col items-center mt-6 -mx-2">
-                            <img className="object-cover w-24 h-24 mx-2 rounded-full" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="avatar" />
-                            <h4 className="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200 hover:underline">John Doe</h4>
-                            <p className="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400 hover:underline">john@example.com</p>
+                            <img className="object-cover w-24 h-24 mx-2 rounded-full" src={photoURL ? photoURL : 'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'} alt="avatar" />
+                            <h4 className="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200 hover:underline">{displayName}</h4>
+                            <h4 className="mx-2 mt-2 font-medium text-success dark:text-gray-200 hover:underline">{admin && 'Admin'}</h4>
+                            <p className="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400 hover:underline">{email}</p>
                         </div>
 
                         <div className="flex flex-col justify-between flex-1 mt-6">

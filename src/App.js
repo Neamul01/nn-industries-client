@@ -21,6 +21,7 @@ import Blogs from './components/Blogs/Blogs';
 import RequireAuth from './components/Shared/RequireAuth';
 import NotFound from './components/Shared/NotFound'
 import Payment from './components/Dashboard/Payment';
+import RequireAdmin from './components/Shared/RequireAdmin';
 
 function App() {
   return (
@@ -38,7 +39,7 @@ function App() {
             <Route path='payment/:id' element={<Payment />}></Route>
             <Route path='myprofile' element={<MyProfile />}></Route>
 
-            <Route path='allorders' element={<AllOrders />}></Route>
+            <Route path='allorders' element={<RequireAdmin><AllOrders /></RequireAdmin>}></Route>
             <Route path='addproduct' element={<AddProduct />}></Route>
             <Route path='manageproduct' element={<ManageProducts />}></Route>
             <Route path='makeadmin' element={<MakeAdmin />}></Route>

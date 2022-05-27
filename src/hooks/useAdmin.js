@@ -9,7 +9,7 @@ const useAdmin = (user) => {
         const email = user?.email;
         request({ url: `/admin/${email}`, method: 'get' })
             .then(data => {
-                console.log(data)
+
                 setAdmin(data.admin);
                 setAdminLoading(false)
             })

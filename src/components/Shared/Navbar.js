@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
-import useToken from '../../hooks/useToken'
 
 const Navbar = () => {
     const [user] = useAuthState(auth);
-    const [token] = useToken(user);
 
     const handleSignOut = () => {
         localStorage.removeItem('accessToken')
@@ -32,12 +30,12 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal p-0">
                     <li><Link to={'/home'}>Home</Link></li>
                     {
-                        token && <li><Link to={'/dashboard'}>Dashboard</Link></li>
+                        user && <li><Link to={'/dashboard'}>Dashboard</Link></li>
                     }
                     <li><Link to={'/portfolio'}>Portfolio</Link></li>
                     <li><Link to={'/blogs'}>Blogs</Link></li>
                     {
-                        token ?
+                        user ?
                             <button onClick={handleSignOut} className="btn btn-ghost">Sign Out</button>
                             :
                             <Link to={'/login'} className="btn btn-ghost">Login</Link>
