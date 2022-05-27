@@ -41,48 +41,56 @@ const Dashboard = () => {
 
                         <div className="flex flex-col justify-between flex-1 mt-6">
                             <nav className='pb-4'>
-                                <Link to={'/dashboard'} className="flex items-center px-4 py-2 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="#">
-                                    <AiFillProfile />
 
-                                    <span className="mx-4 font-medium">Orders</span>
-                                </Link>
-
-                                <Link to={'/dashboard/myreview'} className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="#">
-                                    <MdRateReview />
-
-                                    <span className="mx-4 font-medium">Add Review</span>
-                                </Link>
-
-                                <Link to={'/dashboard/myprofile'} className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="#">
+                                <Link to={'/dashboard/myprofile'} className="flex items-center px-4 py-2 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="#">
                                     <CgProfile />
 
                                     <span className="mx-4 font-medium">Profile</span>
                                 </Link>
 
-                                <Link to='/dashboard/allorders' className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="#">
-                                    <BsNewspaper />
+                                <Link to={'/dashboard'} className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="#">
+                                    <AiFillProfile />
 
-                                    <span className="mx-4 font-medium">All Orders</span>
+                                    <span className="mx-4 font-medium">Orders</span>
                                 </Link>
 
-                                <Link to='/dashboard/addproduct' className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="#">
+                                {
+                                    !admin &&
+                                    <Link to={'/dashboard/myreview'} className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="#">
+                                        <MdRateReview />
 
-                                    <MdOutlineProductionQuantityLimits />
+                                        <span className="mx-4 font-medium">Add Review</span>
+                                    </Link>
+                                }
 
-                                    <span className="mx-4 font-medium">Add Product</span>
-                                </Link>
+                                {
+                                    admin && <>
+                                        <Link to='/dashboard/allorders' className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="#">
+                                            <BsNewspaper />
 
-                                <Link to='/dashboard/manageproduct' className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="#">
-                                    <MdOutlineProductionQuantityLimits />
+                                            <span className="mx-4 font-medium">All Orders</span>
+                                        </Link>
 
-                                    <span className="mx-4 font-medium">Manage Products</span>
-                                </Link>
+                                        <Link to='/dashboard/addproduct' className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="#">
 
-                                <Link to='/dashboard/makeadmin' className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="#">
-                                    <MdOutlineAdminPanelSettings />
+                                            <MdOutlineProductionQuantityLimits />
 
-                                    <span className="mx-4 font-medium">Make Admin</span>
-                                </Link>
+                                            <span className="mx-4 font-medium">Add Product</span>
+                                        </Link>
+
+                                        <Link to='/dashboard/manageproduct' className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="#">
+                                            <MdOutlineProductionQuantityLimits />
+
+                                            <span className="mx-4 font-medium">Manage Products</span>
+                                        </Link>
+
+                                        <Link to='/dashboard/makeadmin' className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="#">
+                                            <MdOutlineAdminPanelSettings />
+
+                                            <span className="mx-4 font-medium">Make Admin</span>
+                                        </Link>
+                                    </>
+                                }
                             </nav>
                         </div>
                     </div>

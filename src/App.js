@@ -40,9 +40,9 @@ function App() {
             <Route path='myprofile' element={<MyProfile />}></Route>
 
             <Route path='allorders' element={<RequireAdmin><AllOrders /></RequireAdmin>}></Route>
-            <Route path='addproduct' element={<AddProduct />}></Route>
-            <Route path='manageproduct' element={<ManageProducts />}></Route>
-            <Route path='makeadmin' element={<MakeAdmin />}></Route>
+            <Route path='addproduct' element={<RequireAdmin><AddProduct /></RequireAdmin>}></Route>
+            <Route path='manageproduct' element={<RequireAdmin><ManageProducts /></RequireAdmin>}></Route>
+            <Route path='makeadmin' element={<RequireAdmin><MakeAdmin /></RequireAdmin>}></Route>
           </Route>
 
           <Route path='portfolio' element={<Portfolio />}></Route>
