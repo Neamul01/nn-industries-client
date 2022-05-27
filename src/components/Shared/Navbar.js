@@ -32,12 +32,12 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal p-0">
                     <li><Link to={'/home'}>Home</Link></li>
                     {
-                        user && <li><Link to={'/dashboard'}>Dashboard</Link></li>
+                        token && <li><Link to={'/dashboard'}>Dashboard</Link></li>
                     }
                     <li><Link to={'/portfolio'}>Portfolio</Link></li>
                     <li><Link to={'/blogs'}>Blogs</Link></li>
                     {
-                        user ?
+                        token ?
                             <button onClick={handleSignOut} className="btn btn-ghost">Sign Out</button>
                             :
                             <Link to={'/login'} className="btn btn-ghost">Login</Link>
