@@ -9,6 +9,7 @@ import { MdProductionQuantityLimits } from "react-icons/md";
 const BusinessSummary = () => {
     return (
         <div className='my-3 md:my-6 lg:my-24'>
+            <h2 className="text-3xl text-center text-primary mb-3 md:mb-8 font-bold">Our Revenue</h2>
             <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 rounded-2xl overflow-hidden md:gap-0 items-center w-full bg-base-100 shadow-xl flex-row justify-center">
                 <div className="card-body gap-5 text-center justify-center items-center bg-green-200 shadow-2xl py-24">
                     <BsFillPeopleFill className=' text-7xl ' />
