@@ -26,6 +26,9 @@ live Link [N&N Industies](https://nn-industries.web.app/).
 - Express, 
 - MongoDB,
 - Firebase,
+- React-hook-form,
+- React-query,
+- axios,
 - Tailwind css,
 - Daisy ui,
 - etc.
