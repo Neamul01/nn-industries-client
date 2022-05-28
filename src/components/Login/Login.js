@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import SocialLogin from './SocialLogin';
 import LoadingSpinner from '../Shared/LoadingSpinner';
 import useToken from '../../hooks/useToken';
+import login from '../../images/login.jpg'
 
 const Login = () => {
     const [
@@ -42,7 +43,7 @@ const Login = () => {
     return (
         <div className='py-6 md:py-12'>
             <div className="flex max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl">
-                <div className="hidden bg-cover lg:block lg:w-1/2" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1606660265514-358ebbadc80d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1575&q=80')" }}></div>
+                <div className="hidden bg-cover lg:block lg:w-1/2" style={{ backgroundImage: `url(${login})` }}></div>
 
                 <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
                     <h2 className="text-2xl font-semibold text-center text-gray-700 dark:text-white">Login</h2>
