@@ -22,6 +22,7 @@ live Link [N&N Industies](https://nn-industries.web.app/).
 ### `Used technologies`
 
 - React,
+- React Router,
 - Node,
 - Express, 
 - MongoDB,
