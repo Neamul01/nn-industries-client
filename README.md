@@ -1,6 +1,9 @@
 # N&N Industries
 
-live Link [N&N Industies](https://nn-industries.web.app/).
+## links of this site
+
+### `Live link of this site` [N&N Industies](https://nn-industries.web.app/).
+### `Server side code` [nn-industries-server](https://github.com/Neamul01/nn-industries-server)
 
 ## Features
 
